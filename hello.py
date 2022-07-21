@@ -1,17 +1,15 @@
 from os.path import dirname, join
-
 from dotenv import load_dotenv
 from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-
 from app.models import db
 from app.models.log import Log
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Koqmed-Chivma@localhost:5432/abcs_amm_db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
