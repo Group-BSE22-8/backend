@@ -4,7 +4,8 @@ from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from app.models import db
-from app.models.log import Log
+from app.models.role import Role
+# from app.models.log import Log
 
 app = Flask(__name__)
 
@@ -21,12 +22,16 @@ manager = Manager(app)
 
 manager.add_command('db', MigrateCommand)
 
+if __name__ == "__main__":
+    manager.run()
+    db.create_all()
+
 
 @app.route('/')
 def hello_world():
     return '<h1>Hello World!</h1>'
 
-
-@app.route('/api/v1/logs')
-def get_logs():
-    return Log.find_all()
+#
+# @app.route('/api/v1/logs')
+# def get_logs():
+#     return Log.find_all()
